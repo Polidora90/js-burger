@@ -24,7 +24,6 @@ window.addEventListener("load", function () {
             price = addToPrice(price, ingredient);
         }
 
-       
         //prezzo scontato con codice sconto
         //USARE L'INPUT UTENTE trasformando le lettere in minuscolo
         //alert con codice sconto non valido
@@ -38,9 +37,7 @@ window.addEventListener("load", function () {
         for (var i = 0; i < discountCoupon.length; i++) {
             var burgerCoupon = discountCoupon[i];
 
-            if (userCoupon == burgerCoupon) {
-                price = (price * 0.85);
-            } 
+            price = validateCoupon(userCoupon, burgerCoupon, price);
         }
 
         if (userCoupon != burgerCoupon) {
@@ -51,7 +48,14 @@ window.addEventListener("load", function () {
 
         document.getElementById("price").innerText = price;
 
+        function validateCoupon(incomingCoupon, validCoupon, priceOfBurger) {
+            if (incomingCoupon == validCoupon) {
+                priceOfBurger = (priceOfBurger * 0.85);
+            } 
 
+            return priceOfBurger;
+        }
+       
         function addToPrice(priceOfBurger, HtmlElement) {
             if (HtmlElement.checked) {
                 priceOfBurger += parseInt(HtmlElement.value);
