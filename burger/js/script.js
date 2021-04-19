@@ -17,19 +17,30 @@ window.addEventListener("load", function () {
 
         console.log(ingredientsList);
 
-        
+
         for (var i = 0; i < ingredientsList.length; i++) {
             var ingredient = ingredientsList[i];
 
-            if (ingredient.checked) {
-                price += parseInt(ingredient.value);
-            }
-
+            price = addToPrice(price, ingredient);            
         }
 
         console.log(price);
 
         document.getElementById("price").innerText = price;
+
+
+        //prezzo scontato con codice sconto
+        //alert con codice sconto non valido
+
+
+
+        function addToPrice(priceOfBurger, HtmlElement) {
+            if (HtmlElement.checked) {
+                priceOfBurger += parseInt(HtmlElement.value);
+            }
+
+            return  priceOfBurger;
+        }
     })
 
 
