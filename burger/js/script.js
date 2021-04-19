@@ -21,7 +21,30 @@ window.addEventListener("load", function () {
         for (var i = 0; i < ingredientsList.length; i++) {
             var ingredient = ingredientsList[i];
 
-            price = addToPrice(price, ingredient);            
+            price = addToPrice(price, ingredient);
+        }
+
+       
+        //prezzo scontato con codice sconto
+        //USARE L'INPUT UTENTE trasformando le lettere in minuscolo
+        //alert con codice sconto non valido
+        var discountCoupon = ["59826burger", "65692cheese", "hotpolidorahot"];
+
+        var userCouponField = document.getElementById("coupon");
+        var userCoupon = userCouponField.value.toLowerCase();
+
+        console.log(userCoupon);
+
+        for (var i = 0; i < discountCoupon.length; i++) {
+            var burgerCoupon = discountCoupon[i];
+
+            if (userCoupon == burgerCoupon) {
+                price = (price * 0.85);
+            } 
+        }
+
+        if (userCoupon != burgerCoupon) {
+            alert("Il tuo codice sconto non è valido");
         }
 
         console.log(price);
@@ -29,17 +52,12 @@ window.addEventListener("load", function () {
         document.getElementById("price").innerText = price;
 
 
-        //prezzo scontato con codice sconto
-        //alert con codice sconto non valido
-
-
-
         function addToPrice(priceOfBurger, HtmlElement) {
             if (HtmlElement.checked) {
                 priceOfBurger += parseInt(HtmlElement.value);
             }
 
-            return  priceOfBurger;
+            return priceOfBurger;
         }
     })
 
